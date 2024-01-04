@@ -1,11 +1,11 @@
-;;; yank-delimiters.el --- Delimiters-aware yanking -*- lexical-binding: t; -*-
+;;; yank-delimiters.el --- Delimiters-aware yanking -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2024  Tony Zorman
 ;;
 ;; Author: Tony Zorman <soliditsallgood@mailbox.org>
 ;; Keywords: convenience
 ;; Version: 0.1
-;; Package-Requires: ((emacs "29.1"))
+;; Package-Requires: ((emacs "29.1") (dash "2.18.0"))
 ;; Homepage: https://github.com/slotThe/yank-delimiters
 
 ;; This file is NOT part of GNU Emacs.
@@ -39,6 +39,8 @@
 ;; [1]: https://tony-zorman.com/posts/yanking.html
 
 ;;; Code:
+
+(require 'dash)
 
 (defun yank-delimiters--count ()
   "Return delimiter count in current buffer.
@@ -91,6 +93,7 @@ actually trimmed."
       (apply #'yank-delimiters--trim it))
     (buffer-string)))
 
+;;;###autoload
 (defun yank-delimiters-yank (&optional arg)
   "Delimiter-aware yanking.
 Like `yank' (which see), but trim non-matching delimiters from
