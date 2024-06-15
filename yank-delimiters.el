@@ -125,5 +125,8 @@ insertion of `yank-delimiters--trim-all' before yanking."
     (setq this-command 'yank))
   nil)
 
+;; Play nice with `delsel.el'
+(put 'yank-delimiters-yank 'delete-selection 'yank)
+
 (provide 'yank-delimiters)
 ;;; yank-delimiters.el ends here
